@@ -41,7 +41,7 @@ pub fn apply_vibrancy(window: id, appearance: NSVisualEffectMaterial, state: Opt
 
     blurred_view.setMaterial_(m);
     blurred_view.setBlendingMode_(NSVisualEffectBlendingMode::BehindWindow);
-    blurred_view.setState_(if state.is_some() { state } else { NSVisualEffectState::FollowsWindowActiveState });
+    blurred_view.setState_(if state.is_some() { state.unwrap() } else { NSVisualEffectState::FollowsWindowActiveState });
     NSVisualEffectView::setAutoresizingMask_(
       blurred_view,
       NSViewWidthSizable | NSViewHeightSizable,
