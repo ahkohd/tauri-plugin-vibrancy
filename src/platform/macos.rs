@@ -15,7 +15,7 @@ use cocoa::{
 use objc::{class, msg_send, sel, sel_impl};
 
 #[allow(deprecated)]
-pub fn apply_vibrancy(window: id, appearance: NSVisualEffectMaterial, state: Option<NSVisualEffectState>) {
+pub fn apply_vibrancy(window: id, appearance: NSVisualEffectMaterial, state: NSVisualEffectState) {
   unsafe {
     if NSAppKitVersionNumber < NSAppKitVersionNumber10_10 {
       eprintln!("\"NSVisualEffectView\" is only available on macOS 10.10 or newer");
@@ -41,7 +41,7 @@ pub fn apply_vibrancy(window: id, appearance: NSVisualEffectMaterial, state: Opt
 
     blurred_view.setMaterial_(m);
     blurred_view.setBlendingMode_(NSVisualEffectBlendingMode::BehindWindow);
-    blurred_view.setState_(if state.is_some() { state.unwrap() } else { NSVisualEffectState::FollowsWindowActiveState });
+    blurred_view.setState_(state);
     NSVisualEffectView::setAutoresizingMask_(
       blurred_view,
       NSViewWidthSizable | NSViewHeightSizable,

@@ -76,7 +76,7 @@ pub trait Vibrancy {
 
   /// Applies macos vibrancy effect to tao/tauri window. This has no effect on macOS versions below 10.10
   #[cfg(target_os = "macos")]
-  fn apply_vibrancy(&self, vibrancy: MacOSVibrancy,  visual_state: Option<MacOSVisualState>);
+  fn apply_vibrancy(&self, vibrancy: MacOSVibrancy,  visual_state: MacOSVisualState);
 }
 
 #[cfg(feature = "tauri-impl")]
@@ -95,7 +95,7 @@ where
   }
 
   #[cfg(target_os = "macos")]
-  fn apply_vibrancy(&self, vibrancy: MacOSVibrancy, visual_state: Option<MacOSVisualState>) {
+  fn apply_vibrancy(&self, vibrancy: MacOSVibrancy, visual_state: MacOSVisualState) {
     macos::apply_vibrancy(self.ns_window().unwrap() as _, vibrancy, visual_state);
   }
 }
@@ -113,7 +113,7 @@ impl Vibrancy for TaoWindow {
   }
 
   #[cfg(target_os = "macos")]
-  fn apply_vibrancy(&self, vibrancy: MacOSVibrancy, visual_state: Option<MacOSVisualState>) {
+  fn apply_vibrancy(&self, vibrancy: MacOSVibrancy, visual_state: MacOSVisualState) {
     macos::apply_vibrancy(self.ns_window() as _, vibrancy, visual_state);
   }
 }
