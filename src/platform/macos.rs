@@ -67,7 +67,7 @@ enum NSVisualEffectBlendingMode {
 #[allow(dead_code)]
 #[repr(u64)]
 #[derive(Clone, Copy, Debug, PartialEq)]
-enum NSVisualEffectState {
+pub enum NSVisualEffectState {
   FollowsWindowActiveState = 0,
   Active = 1,
   Inactive = 2,
