@@ -44,7 +44,7 @@ mod platform;
 #[cfg(target_os = "macos")]
 use crate::platform::macos;
 #[cfg(target_os = "macos")]
-pub use crate::platform::macos::NSVisualEffectMaterial as MacOSVibrancy;
+pub use crate::platform::macos::{NSVisualEffectMaterial as MacOSVibrancy, NSVisualEffectState as MacOSVisualState};
 #[cfg(target_os = "windows")]
 use crate::platform::windows;
 
@@ -95,8 +95,8 @@ where
   }
 
   #[cfg(target_os = "macos")]
-  fn apply_vibrancy(&self, vibrancy: MacOSVibrancy) {
-    macos::apply_vibrancy(self.ns_window().unwrap() as _, vibrancy);
+  fn apply_vibrancy(&self, vibrancy: MacOSVibrancy, visual_state: Option<MacOSVisualState>) {
+    macos::apply_vibrancy(self.ns_window().unwrap() as _, vibrancy, visual_state);
   }
 }
 
